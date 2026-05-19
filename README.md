@@ -1,64 +1,50 @@
 # 🪨📄✂️ 2026 暑期 Python 课程项目
 
-本仓库包含 2026 年暑期 Python 课程的全部三个实验项目：Python 基础练习、机器学习回归预测（含两个子项目）、以及基于 YOLO 的深度学习手势识别。
+> **本仓库的核心内容位于 Project 3** — 基于 YOLO11n 的石头剪刀布手势识别系统。
+> Project 1 和 Project 2 是课程前期任务与过渡练习，帮助掌握 Python 与机器学习基础，最终汇聚到 Project 3 的完整深度学习项目。
 
 ---
 
-## 📋 项目列表
+## 📋 项目概览
 
-### Project 1 — Python 基础练习
+### 🔥 Project 3 — 石头剪刀布手势识别（YOLO11n）← **核心项目**
+
+基于 **YOLO11n** 的目标检测项目，实时识别剪刀、石头、布三种手势。
+
+- **数据集**：Roboflow 公开数据集（15,874 张图片，含数据增强）
+- **验证集 mAP50**：**0.940** · **测试集 mAP50**：**0.934**
+- **推理速度**：单张图片 < 2.1ms（GPU 加速）
+- **推理结果**：见 `result.png`（截图）、`result.gif`（动图）、`result.mp4`（录屏）
+- **支持**：单张图片推理 + 实时摄像头检测
+
+📂 [project3/](project3/) · 📄 [README →](project3/README.md)
+
+---
+
+### 📘 Project 1 — Python 基础练习（过渡练习）
 
 入门级 Python 编程练习，涵盖变量、数据类型、运算符、流程控制、函数、组合数据类型等基础语法，共 **14 个练习文件**（编号 1.1 ~ 6.2）。
 
-| 章节 | 内容 |
-|------|------|
-| 一 | 数据类型（输入输出、格式化、数学运算） |
-| 二 | 运算符和表达式（距离计算、数位分解、字符串统计） |
-| 三 | 选择结构（成绩等级、字符类型判断） |
-| 四 | 循环结构（位数判断、阶乘求和） |
-| 五 | 函数（斜边长、特殊数求和） |
-| 六 | 组合数据类型（列表推导式、字典映射） |
-
-📂 [project1/](project1/) · 📄 [详细说明 →](project1/README.md)
+📂 [project1/](project1/) · 📄 [README →](project1/README.md)
 
 ---
 
-### Project 2-1 — 加州房价预测（随机森林回归）
+### 🏠 Project 2-1 — 加州房价预测（过渡项目）
 
 基于 scikit-learn 内置的 **California Housing Dataset**，使用随机森林回归模型预测街区房价中位数。
 
 - **算法**：RandomForestRegressor（200 棵决策树，max_depth=20）
 - **评估**：R² = 0.8053，RMSE = 0.5052
-- **关键发现**：收入中位数（MedInc）是房价最强预测因子
 
-📂 [project2_1/](project2_1/) · 📄 [详细说明 →](project2_1/README.md)
-
----
-
-### Project 2-2 — 学生数字行为与学习表现分析
-
-基于 Kaggle 真实数据集的探索性分析与回归预测项目，分析 **学习时间、屏幕时间、睡眠、运动、出勤** 等因素与 **CGPA** 的关系。
-
-- **数据清洗**：缺失值填充、异常值过滤、去重
-- **算法对比**：Linear Regression vs Random Forest
-- **特征重要性 Top 3**：学习时间 > 出勤率 > 屏幕时间
-- **可视化**：6 张分析图表（分布图、散点图、热力图、特征重要性）
-
-📂 [project2_2/](project2_2/) · 📄 [详细说明 →](project2_2/README.md)
+📂 [project2_1/](project2_1/) · 📄 [README →](project2_1/README.md)
 
 ---
 
-### Project 3 — 石头剪刀布手势识别（YOLO11n）
+### 📊 Project 2-2 — 学生数字行为分析（过渡项目）
 
-基于 **YOLO11n** 的目标检测项目，实时识别剪刀、石头、布三种手势。
+基于 Kaggle 真实数据集的探索性分析与回归预测，分析学习时间、屏幕时间、睡眠等因素与 CGPA 的关系。
 
-- **数据集**：Roboflow 公开数据集（15,874 张图片，含数据增强）
-- **验证集 mAP50**：**0.940**
-- **测试集 mAP50**：**0.934**
-- **推理速度**：单张图片 < 2.1ms（GPU 加速）
-- **支持**：单张图片推理 + 实时摄像头检测
-
-📂 [project3/](project3/) · 📄 [详细说明 →](project3/README.md)
+📂 [project2_2/](project2_2/) · 📄 [README →](project2_2/README.md)
 
 ---
 
@@ -75,11 +61,11 @@
 
 ## 🔧 环境总览
 
-| 项目 | 主要依赖 | 运行环境 |
-|------|----------|----------|
-| Project 1 | 标准库 + math | macOS / Windows |
-| Project 2-1 | scikit-learn, pandas, matplotlib | macOS / Windows |
-| Project 2-2 | pandas, seaborn, scikit-learn | macOS / Windows |
-| Project 3 | PyTorch, ultralytics, OpenCV | Windows (CUDA) / macOS (CPU) |
+| 项目 | 主要依赖 | 定位 |
+|------|----------|------|
+| Project 1 | 标准库 + math | 基础练习 · 过渡 |
+| Project 2-1 | scikit-learn, pandas, matplotlib | 机器学习入门 · 过渡 |
+| Project 2-2 | pandas, seaborn, scikit-learn | 数据分析实践 · 过渡 |
+| **Project 3** | **PyTorch, ultralytics, OpenCV** | **核心项目** |
 
 各项目详细环境要求见子目录 README。

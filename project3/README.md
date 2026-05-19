@@ -51,6 +51,9 @@ project3/
 ├── detect.py                    # 实时摄像头检测
 ├── yolo11n.pt                   # YOLO11n 预训练权重
 ├── yolo26n.pt                   # YOLO26n 预训练权重
+├── result.png                   # 推理结果截图
+├── result.gif                   # 实时检测动图
+├── result.mp4                   # 实时检测录屏
 ├── rock-paper-scissors-11/      # 数据集目录
 │   ├── data.yaml                # 数据集配置文件
 │   ├── train/                   # 训练集（图片 + 标签）
@@ -133,6 +136,20 @@ python detect.py
 - 调用系统摄像头实时检测
 - 窗口显示 FPS
 - 按 `Q` 键退出
+
+## 推理结果展示
+
+项目根目录包含以下推理结果文件：
+
+| 文件 | 说明 |
+|------|------|
+| `result.png` | 单张图片推理结果截图 |
+| `result.gif` | 摄像头实时检测过程动图（循环展示多种手势识别） |
+| `result.mp4` | 实时检测完整录屏视频 |
+
+![推理结果](result.png)
+
+![实时检测动图](result.gif)
 
 ## 训练日志
 
