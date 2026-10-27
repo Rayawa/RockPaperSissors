@@ -1,164 +1,31 @@
-# Project 3：石头剪刀布手势识别 (Rock-Paper-Scissors Detection)
+# Hand-Gesture Detection
 
-基于 YOLO11n 的石头剪刀布手势目标检测项目。
+English | [简体中文](README_zh.md)
 
-## 项目概述
+YOLO detection of rock, paper and scissors gestures.
 
-使用 Ultralytics YOLO11n 模型训练一个手势识别检测器，能够实时识别摄像头画面中的剪刀（Scissors）、石头（Rock）、布（Paper）三种手势。
+Archived project retained for reference.
 
-## 数据集
+## Overview
 
-数据集来自 Roboflow 上的 [rock-paper-scissors-sxsw](https://universe.roboflow.com/roboflow-58fyf/rock-paper-scissors-sxsw) v11 版（YOLOv8n-100epochs），共 **15,874 张图片**，由 SXSW 2023《World's Largest Game of Rock, Paper, Scissors》挑战赛贡献者制作。
+Scripts cover dataset download, YOLO11n training, validation/test evaluation, image prediction and webcam inference. Configure dataset access locally; do not put service credentials in documentation.
 
-### 数据预处理
-- 自动旋转（EXIF 方向修正）
-- 缩放到 640×640（拉伸填充）
+## Technology and Dependencies
 
-### 数据增强（每张原图生成 7 个版本）
-- 50% 概率水平翻转
-- 随机旋转 -12° ~ +12°
-- 随机剪切 -2° ~ +2°
-- 亮度调整 -25% ~ +25%
-- 曝光调整 -25% ~ +25%
-- 随机高斯模糊 0 ~ 1.5 像素
-- 1% 像素的椒盐噪声
+Python 3, a compatible PyTorch installation, Ultralytics and OpenCV; Roboflow for optional dataset downloading. The training script requests CUDA.
 
-### 类别
-- Paper（布）
-- Rock（石头）
-- Scissors（剪刀）
+## Repository Structure
 
-## 环境要求
+`train.py`, `evaluate.py`, `test.py`, `predict.py` and `detect.py`. Training expects `rock-paper-scissors-11/data.yaml`; inference expects `runs/detect/train/weights/best.pt`.
 
-- Python 3.12+
-- PyTorch 2.7+
-- CUDA 兼容 GPU（训练用，推理可选）
-- ultralytics
-- opencv-python
-- roboflow（下载数据集用）
+## Quick Start
 
-## 文件结构
-
-```
-project3/
-├── README.md                    # 本文件
-├── console.md                   # 控制台运行日志
-├── download_data.py             # 从 Roboflow 下载数据集
-├── train.py                     # 训练模型
-├── evaluate.py                  # 在验证集上评估
-├── test.py                      # 在测试集上评估
-├── predict.py                   # 单张图片推理
-├── detect.py                    # 实时摄像头检测
-├── yolo11n.pt                   # YOLO11n 预训练权重
-├── yolo26n.pt                   # YOLO26n 预训练权重
-├── result.png                   # 推理结果截图
-├── result.gif                   # 实时检测动图
-├── result.mp4                   # 实时检测录屏
-├── rock-paper-scissors-11/      # 数据集目录
-│   ├── data.yaml                # 数据集配置文件
-│   ├── train/                   # 训练集（图片 + 标签）
-│   ├── valid/                   # 验证集
-│   └── test/                    # 测试集
-└── runs/
-    └── detect/
-        ├── train/               # 训练输出（权重、指标曲线、训练图片）
-        ├── val/                 # 验证集评估输出
-        └── val-2/               # 测试集评估输出
-```
-
-## 使用说明
-
-### 1. 下载数据集
+From this directory, after preparing the required input data and dependencies:
 
 ```bash
-python download_data.py
-```
-
-需要有效的 Roboflow API Key（已内置在脚本中）。
-
-### 2. 训练模型
-
-```bash
+python -m pip install ultralytics opencv-python
 python train.py
-```
-
-训练参数：
-- 模型：`yolo11n.pt`
-- 输入尺寸：640×640
-- Epochs：50
-- Batch size：16
-- Workers：8
-- 优化器：AdamW
-- 设备：CUDA
-
-训练耗时约 **3.07 小时**（50 epochs，RTX 5060 Laptop GPU）。
-
-### 3. 评估模型
-
-```bash
-# 验证集评估
-python evaluate.py
-
-# 测试集评估
-python test.py
-```
-
-**验证集结果：**
-| Class     | Images | Instances | P     | R     | mAP50 | mAP50-95 |
-|-----------|--------|-----------|-------|-------|-------|----------|
-| all       | 588    | 406       | 0.942 | 0.891 | 0.940 | 0.697    |
-| Paper     | 134    | 141       | 0.934 | 0.894 | 0.936 | 0.690    |
-| Rock      | 125    | 147       | 0.949 | 0.898 | 0.943 | 0.689    |
-| Scissors  | 114    | 118       | 0.944 | 0.881 | 0.940 | 0.714    |
-
-**测试集结果：**
-| Class     | Images | Instances | P     | R     | mAP50 | mAP50-95 |
-|-----------|--------|-----------|-------|-------|-------|----------|
-| all       | 320    | 210       | 0.898 | 0.920 | 0.934 | 0.693    |
-| Paper     | 72     | 72        | 0.868 | 0.861 | 0.904 | 0.630    |
-| Rock      | 63     | 72        | 0.938 | 0.944 | 0.951 | 0.715    |
-| Scissors  | 64     | 66        | 0.887 | 0.953 | 0.947 | 0.734    |
-
-### 4. 单张图片预测
-
-```bash
-python predict.py
-```
-
-默认读取 `my_hand.jpg`，识别结果保存到 `runs/detect/` 目录。
-
-### 5. 实时摄像头检测
-
-```bash
 python detect.py
 ```
 
-- 调用系统摄像头实时检测
-- 窗口显示 FPS
-- 按 `Q` 键退出
-
-## 推理结果展示
-
-项目根目录包含以下推理结果文件：
-
-| 文件 | 说明 |
-|------|------|
-| `result.png` | 单张图片推理结果截图 |
-| `result.gif` | 摄像头实时检测过程动图（循环展示多种手势识别） |
-| `result.mp4` | 实时检测完整录屏视频 |
-
-![推理结果](result.png)
-
-![实时检测动图](result.gif)
-
-## 训练日志
-
-详见 `console.md`。
-
-## 训练环境
-
-- GPU: NVIDIA GeForce RTX 5060 Laptop GPU (8GB VRAM)
-- CUDA: 11.8
-- PyTorch: 2.7.1
-- Ultralytics: 8.4.48
-- Python: 3.12.13
+Install PyTorch separately for the local compute environment. Supply the dataset before training, or the expected trained weights before detection. For image prediction, provide `my_hand.jpg`; press Q to close webcam inference.
