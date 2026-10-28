@@ -9,21 +9,21 @@ Fourteen introductory Python exercises covering variables, data types, operators
 
 ```
 project1/
-├── README.md           # 本文件
-├── 1.1.py              # 输入正整数，输出其平方
-├── 1.2.py              # 按模板输出学生录取信息
-├── 1.3.py              # 求直角三角形斜边长
-├── 2.1.py              # 计算两点间距离
-├── 2.2.py              # 三位正整数各位立方和
-├── 2.3.py              # 统计英文字母出现次数（不区分大小写）
-├── 3.1.py              # 成绩等级判定
-├── 3.2.py              # 字符类型判断
-├── 4.1.py              # 判断整数位数
-├── 4.2.py              # 计算 1! + 2! + … + 10!
-├── 5.1.py              # 函数求斜边长度
-├── 5.2.py              # 求 n 以内被 3 和 7 整除的数之和的平方根
-├── 6.1.py              # 生成大写英文字母列表
-└── 6.2.py              # 根据学号查询年级和学院
+├── README.md           # This file
+├── 1.1.py              # Read a positive integer and output its square
+├── 1.2.py              # Print student admission information from a template
+├── 1.3.py              # Calculate a right triangle's hypotenuse
+├── 2.1.py              # Calculate distance between two points
+├── 2.2.py              # Sum cubes of the digits of a positive three-digit integer
+├── 2.3.py              # Count English letters case-insensitively
+├── 3.1.py              # Classify grade levels
+├── 3.2.py              # Identify character types
+├── 4.1.py              # Count digits in an integer
+├── 4.2.py              # Calculate 1! + 2! + … + 10!
+├── 5.1.py              # Calculate a hypotenuse using a function
+├── 5.2.py              # Square root of the sum of numbers within n divisible by both 3 and 7
+├── 6.1.py              # Generate an uppercase English letter list
+└── 6.2.py              # Look up grade and college from a student ID
 ```
 
 ## Topics

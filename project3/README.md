@@ -44,29 +44,29 @@ The dataset is version v11 (YOLOv8n-100epochs) of [rock-paper-scissors-sxsw](htt
 
 ```
 project3/
-├── README.md                    # 本文件
-├── console.md                   # 控制台运行日志
-├── download_data.py             # 从 Roboflow 下载数据集
-├── train.py                     # 训练模型
-├── evaluate.py                  # 在验证集上评估
-├── test.py                      # 在测试集上评估
-├── predict.py                   # 单张图片推理
-├── detect.py                    # 实时摄像头检测
-├── yolo11n.pt                   # YOLO11n 预训练权重
-├── yolo26n.pt                   # YOLO26n 预训练权重
-├── result.png                   # 推理结果截图
-├── result.gif                   # 实时检测动图
-├── result.mp4                   # 实时检测录屏
-├── rock-paper-scissors-11/      # 数据集目录
-│   ├── data.yaml                # 数据集配置文件
-│   ├── train/                   # 训练集（图片 + 标签）
-│   ├── valid/                   # 验证集
-│   └── test/                    # 测试集
+├── README.md                    # This file
+├── console.md                   # Console logs
+├── download_data.py             # Download dataset from Roboflow
+├── train.py                     # Train model
+├── evaluate.py                  # Evaluate on validation set
+├── test.py                      # Evaluate on test set
+├── predict.py                   # Single-image inference
+├── detect.py                    # Live camera detection
+├── yolo11n.pt                   # YOLO11n pretrained weights
+├── yolo26n.pt                   # YOLO26n pretrained weights
+├── result.png                   # Inference result screenshot
+├── result.gif                   # Live detection animation
+├── result.mp4                   # Live detection recording
+├── rock-paper-scissors-11/      # Dataset directory
+│   ├── data.yaml                # Dataset configuration
+│   ├── train/                   # Training set (images + labels)
+│   ├── valid/                   # Validation set
+│   └── test/                    # Test set
 └── runs/
     └── detect/
-        ├── train/               # 训练输出（权重、指标曲线、训练图片）
-        ├── val/                 # 验证集评估输出
-        └── val-2/               # 测试集评估输出
+        ├── train/               # Training outputs (weights, metric curves, training images)
+        ├── val/                 # Validation evaluation outputs
+        └── val-2/               # Test evaluation outputs
 ```
 
 ## Usage
@@ -99,10 +99,10 @@ Training took approximately **3.07 hours** (50 epochs, RTX 5060 Laptop GPU).
 ### 3. Evaluate the Model
 
 ```bash
-# 验证集评估
+# Validation evaluation
 python evaluate.py
 
-# 测试集评估
+# Test evaluation
 python test.py
 ```
 

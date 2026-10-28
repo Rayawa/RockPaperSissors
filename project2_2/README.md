@@ -9,23 +9,23 @@ An exploratory-analysis and regression project based on real student digital-beh
 
 ```
 project2_2/
-├── README.md                          # 本文件
-├── DownloadCSV.py                     # kagglehub 下载数据集
-├── main.py                            # 主程序：清洗 → 可视化 → 建模 → 评估
+├── README.md                          # This file
+├── DownloadCSV.py                     # Download the dataset with kagglehub
+├── main.py                            # Main program: clean → visualize → model → evaluate
 ├── data/
-│   └── student_digital_behavior.csv   # 原始数据集
+│   └── student_digital_behavior.csv   # Original dataset
 ├── outputs/
-│   ├── cleaned_student_digital_behavior.csv  # 清洗后数据
-│   ├── descriptive_statistics.csv           # 描述性统计
-│   ├── model_results.csv                    # 模型评估对比
-│   └── feature_importance.csv               # 随机森林特征重要性
+│   ├── cleaned_student_digital_behavior.csv  # Cleaned data
+│   ├── descriptive_statistics.csv           # Descriptive statistics
+│   ├── model_results.csv                    # Model evaluation comparison
+│   └── feature_importance.csv               # Random forest feature importance
 └── figures/
-    ├── fig1_screen_time_distribution.png    # 屏幕时间分布（直方图 + KDE）
-    ├── fig2_screen_time_vs_cgpa.png         # 屏幕时间 vs CGPA 散点图
-    ├── fig3_study_hours_vs_cgpa.png         # 学习时间 vs CGPA 散点图
-    ├── fig4_sleep_hours_vs_cgpa.png         # 睡眠时间 vs CGPA 散点图
-    ├── fig5_correlation_heatmap.png         # 数值特征相关性热力图
-    └── fig6_feature_importance.png          # Top 10 特征重要性柱状图
+    ├── fig1_screen_time_distribution.png    # Screen time distribution (histogram + KDE)
+    ├── fig2_screen_time_vs_cgpa.png         # Screen time versus CGPA scatter plot
+    ├── fig3_study_hours_vs_cgpa.png         # Study hours versus CGPA scatter plot
+    ├── fig4_sleep_hours_vs_cgpa.png         # Sleep hours versus CGPA scatter plot
+    ├── fig5_correlation_heatmap.png         # Numeric-feature correlation heatmap
+    └── fig6_feature_importance.png          # Top 10 feature importance bar chart
 ```
 
 ## Dataset

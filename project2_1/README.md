@@ -9,13 +9,13 @@ A scikit-learn regression project that trains a random forest on the **Californi
 
 ```
 project2_1/
-├── README.md                # 本文件
-├── main.py                  # 主程序：训练 + 预测 + 评估 + 可视化
-├── model.pkl                # 训练好的 RandomForest 模型（joblib 序列化）
-├── prediction_results.csv   # 测试集真实值与预测值对比
+├── README.md                # This file
+├── main.py                  # Main program: training, prediction, evaluation, visualization
+├── model.pkl                # Trained RandomForest model (joblib serialization)
+├── prediction_results.csv   # Actual versus predicted test-set values
 └── images/
-    ├── feature_importance.png    # 特征重要性柱状图
-    └── prediction_scatter.png    # 真实值 vs 预测值散点图
+    ├── feature_importance.png    # Feature importance bar chart
+    └── prediction_scatter.png    # Actual versus predicted scatter plot
 ```
 
 ## Dataset
