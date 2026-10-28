@@ -1,35 +1,74 @@
-# RockPaperSissors
+# 🪨📄✂️ 2026 暑期 Python 课程项目
 
 [English](README.md) | 简体中文
 
-由 Python 基础与机器学习示例组成、以 YOLO 手势检测为主要项目的代码集合。
 
-归档项目，保留用于参考。
+> **本仓库的核心内容位于 Project 3** — 基于 YOLO11n 的石头剪刀布手势识别系统。
+> Project 1 和 Project 2 是课程前期任务与过渡练习，帮助掌握 Python 与机器学习基础，最终汇聚到 Project 3 的完整深度学习项目。
 
-## 项目概述
+---
 
-仓库从独立 Python 练习逐步扩展到房价回归、行为数据分析和石头剪刀布检测。检测项目包含训练、评估、图片推理及摄像头脚本；保存的指标和素材对应既有运行结果，实际结果取决于数据、权重及硬件。
+## 📋 项目概览
 
-## 技术栈与依赖
+### 🔥 Project 3 — 石头剪刀布手势识别（YOLO11n）← **核心项目**
 
-Python 3。分析项目使用 pandas、scikit-learn、Matplotlib、Seaborn、joblib；检测项目使用 PyTorch、Ultralytics、OpenCV。Roboflow 和 kagglehub 用于可选下载。训练脚本选择 CUDA，其他环境需修改设备设置。
+基于 **YOLO11n** 的目标检测项目，实时识别剪刀、石头、布三种手势。
 
-## 文件结构
+- **数据集**：Roboflow 公开数据集（15,874 张图片，含数据增强）
+- **验证集 mAP50**：**0.940** · **测试集 mAP50**：**0.934**
+- **推理速度**：单张图片 < 2.1ms（GPU 加速）
+- **推理结果**：见 `result.png`（截图）、`result.gif`（动图）、`result.mp4`（录屏）
+- **支持**：单张图片推理 + 实时摄像头检测
 
-- `project1/` — Python 基础
-- `project2_1/` — 加州房价回归
-- `project2_2/` — 行为数据分析
-- `project3/` — YOLO 手势检测
-- `testEnvironment.py` — 环境检查脚本
+📂 [project3/](project3/) · 📄 [README →](project3/README.md)
 
-## 快速上手
+---
 
-创建虚拟环境后选择子项目：
+### 📘 Project 1 — Python 基础练习（过渡练习）
 
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-python project1/1.1.py
-```
+入门级 Python 编程练习，涵盖变量、数据类型、运算符、流程控制、函数、组合数据类型等基础语法，共 **14 个练习文件**（编号 1.1 ~ 6.2）。
 
-检测项目需先安装适合本机的 PyTorch，再执行 `python -m pip install ultralytics opencv-python`。进入 `project3/`，核对 `train.py` 与数据集 YAML 后执行 `python train.py`。将兼容权重放在 `runs/detect/train/weights/best.pt` 后，可运行 `python detect.py` 使用摄像头 0，按 Q 退出。数据集和训练权重可能需要自行在本地准备。各子目录 README 说明具体输入与依赖。
+📂 [project1/](project1/) · 📄 [README →](project1/README.md)
+
+---
+
+### 🏠 Project 2-1 — 加州房价预测（过渡项目）
+
+基于 scikit-learn 内置的 **California Housing Dataset**，使用随机森林回归模型预测街区房价中位数。
+
+- **算法**：RandomForestRegressor（200 棵决策树，max_depth=20）
+- **评估**：R² = 0.8053，RMSE = 0.5052
+
+📂 [project2_1/](project2_1/) · 📄 [README →](project2_1/README.md)
+
+---
+
+### 📊 Project 2-2 — 学生数字行为分析（过渡项目）
+
+基于 Kaggle 真实数据集的探索性分析与回归预测，分析学习时间、屏幕时间、睡眠等因素与 CGPA 的关系。
+
+📂 [project2_2/](project2_2/) · 📄 [README →](project2_2/README.md)
+
+---
+
+## 📊 实验报告
+
+| 实验 | 报告 |
+|------|------|
+| 实验一 | Python 程序设计基础 → [📄 查看](实验一_Python程序设计基础_实验报告.md) |
+| 实验二（2-1） | 机器学习综合程序设计（加州房价预测）→ [📄 查看](实验二_机器学习综合程序设计_实验报告.md) |
+| 实验二（2-2） | 学生数字行为与学习表现分析 → [📄 查看](实验二（2-2）_学生数字行为分析_实验报告.md) |
+| 实验三 | 深度学习综合程序设计（手势识别）→ [📄 查看](实验三_深度学习综合程序设计_实验报告.md) |
+
+---
+
+## 🔧 环境总览
+
+| 项目 | 主要依赖 | 定位 |
+|------|----------|------|
+| Project 1 | 标准库 + math | 基础练习 · 过渡 |
+| Project 2-1 | scikit-learn, pandas, matplotlib | 机器学习入门 · 过渡 |
+| Project 2-2 | pandas, seaborn, scikit-learn | 数据分析实践 · 过渡 |
+| **Project 3** | **PyTorch, ultralytics, OpenCV** | **核心项目** |
+
+各项目详细环境要求见子目录 README。

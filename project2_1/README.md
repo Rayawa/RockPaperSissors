@@ -1,28 +1,94 @@
-# Housing Regression
+# Project 2-1: California Housing Prediction (Random Forest)
 
 English | [简体中文](README_zh.md)
 
-Random-forest regression on the California housing dataset.
 
-Archived project retained for reference.
-
-## Overview
-
-The script loads the scikit-learn dataset, trains a random forest and writes predictions, a serialized model and plots. The first dataset fetch requires network access.
-
-## Technology and Dependencies
-
-Python 3, scikit-learn, pandas, Matplotlib and joblib.
+A scikit-learn regression project that trains a random forest on the **California housing dataset** to predict median neighborhood house values from housing features.
 
 ## Repository Structure
 
-`main.py` runs the workflow; outputs include `model.pkl`, `prediction_results.csv` and `images/`.
+```
+project2_1/
+├── README.md                # 本文件
+├── main.py                  # 主程序：训练 + 预测 + 评估 + 可视化
+├── model.pkl                # 训练好的 RandomForest 模型（joblib 序列化）
+├── prediction_results.csv   # 测试集真实值与预测值对比
+└── images/
+    ├── feature_importance.png    # 特征重要性柱状图
+    └── prediction_scatter.png    # 真实值 vs 预测值散点图
+```
 
-## Quick Start
+## Dataset
 
-From this directory, after preparing the required input data and dependencies:
+**California Housing Dataset** (provided through scikit-learn)
+
+- Samples: 20,640 neighborhood records
+- Features: 8
+- Target: `MedHouseVal` (median house value, in units of USD 100,000)
+
+| Feature | Description | Type |
+|------|------|------|
+| MedInc | Median neighborhood income | Continuous |
+| HouseAge | Median house age | Continuous |
+| AveRooms | Average room count | Continuous |
+| AveBedrms | Average bedroom count | Continuous |
+| Population | Neighborhood population | Continuous |
+| AveOccup | Average occupancy | Continuous |
+| Latitude | Latitude | Continuous |
+| Longitude | Longitude | Continuous |
+
+## Model
+
+**Algorithm**: RandomForestRegressor (random-forest regression)
+
+**Hyperparameters**:
+- `n_estimators=200` — 200 decision trees
+- `max_depth=20` — depth limit to reduce overfitting
+- `random_state=42` — reproducible results
+- `n_jobs=-1` — parallel training on all CPU cores
+
+### Evaluation Results
+
+| Metric | Value |
+|------|------|
+| MSE | 0.2552 |
+| RMSE | 0.5052 |
+| R² | 0.8053 |
+
+R² = 0.8053: the model explains approximately 80.5% of the variance in house values, indicating good performance.
+
+### Top 5 Feature Importances
+
+1. **MedInc** (median income) — the strongest predictor
+2. **AveOccup** (average occupancy)
+3. **Latitude**
+4. **Longitude**
+5. **HouseAge** (house age)
+
+Income and geographic location are the principal predictors of house values.
+
+## Running the Project
 
 ```bash
-python -m pip install scikit-learn pandas matplotlib joblib
+cd project2_1
 python main.py
 ```
+
+Outputs:
+- Dataset information, training progress and evaluation metrics in the console
+- `model.pkl` — trained model
+- `prediction_results.csv` — predictions
+- `images/feature_importance.png` — feature-importance plot
+- `images/prediction_scatter.png` — actual-versus-predicted scatter plot
+
+## Requirements
+
+```bash
+pip install scikit-learn pandas matplotlib joblib
+```
+
+- Python 3.8+
+- scikit-learn
+- pandas
+- matplotlib
+- joblib

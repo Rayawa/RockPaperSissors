@@ -1,30 +1,126 @@
-# Lifestyle Data Analysis
+# Project 2-2：学生数字行为与学习表现分析
 
 [English](README.md) | 简体中文
 
-使用生活习惯与学业表现数据集的探索分析和回归示例。
 
-归档项目，保留用于参考。
+基于真实学生数字行为数据的探索性分析与回归预测项目。分析学习时间、屏幕时间、睡眠、运动、出勤等因素与学业表现（CGPA）之间的关系。
 
-## 项目概述
+## 项目结构
 
-流程清洗表格数据、生成图件，并比较线性回归与随机森林回归。使用公开数据集，不记录项目参与者信息。
+```
+project2_2/
+├── README.md                          # 本文件
+├── DownloadCSV.py                     # kagglehub 下载数据集
+├── main.py                            # 主程序：清洗 → 可视化 → 建模 → 评估
+├── data/
+│   └── student_digital_behavior.csv   # 原始数据集
+├── outputs/
+│   ├── cleaned_student_digital_behavior.csv  # 清洗后数据
+│   ├── descriptive_statistics.csv           # 描述性统计
+│   ├── model_results.csv                    # 模型评估对比
+│   └── feature_importance.csv               # 随机森林特征重要性
+└── figures/
+    ├── fig1_screen_time_distribution.png    # 屏幕时间分布（直方图 + KDE）
+    ├── fig2_screen_time_vs_cgpa.png         # 屏幕时间 vs CGPA 散点图
+    ├── fig3_study_hours_vs_cgpa.png         # 学习时间 vs CGPA 散点图
+    ├── fig4_sleep_hours_vs_cgpa.png         # 睡眠时间 vs CGPA 散点图
+    ├── fig5_correlation_heatmap.png         # 数值特征相关性热力图
+    └── fig6_feature_importance.png          # Top 10 特征重要性柱状图
+```
 
-## 技术栈与依赖
+## 数据集
 
-Python 3、pandas、Matplotlib、Seaborn、scikit-learn；可选下载另需 kagglehub。
+来自 Kaggle 的 **[Student Lifestyle and Academic Performance Dataset](https://www.kaggle.com/datasets/rafi003/student-lifestyle-and-academic-performance-dataset)**。
 
-## 文件结构
+**原始字段**（共 12 列）：
 
-`main.py` 分析数据，`DownloadCSV.py` 下载数据集。输入为 `data/student_digital_behavior.csv`，结果输出到 `outputs/` 与 `figures/`。
+| 字段 | 说明 | 类型 |
+|------|------|------|
+| Age | 年龄 | 数值 |
+| Branch | 专业分支 | 分类 |
+| Study_Hours_per_Day | 每日学习时间（小时） | 数值 |
+| Sleep_Hours | 每日睡眠时间（小时） | 数值 |
+| Screen_Time_Hours | 每日屏幕时间（小时） | 数值 |
+| Gym_Hours_per_Week | 每周运动时间（小时） | 数值 |
+| Diet_Type | 饮食类型 | 分类 |
+| Attendance_Percentage | 出勤率（%） | 数值 |
+| Stress_Level_1_to_10 | 压力水平（1~10） | 数值 |
+| Residence | 住宿类型 | 分类 |
+| Internal_Marks | 内部成绩 | 数值 |
+| **CGPA** | **绩点（目标变量）** | 数值 |
 
-## 快速上手
+## 数据清洗
 
-在本目录准备好所需输入数据与依赖后执行：
+主程序自动执行以下清洗步骤：
+
+1. **字段筛选** — 仅保留建模所需字段（排除 `Internal_Marks` 以避免数据泄漏）
+2. **去重** — 删除重复行
+3. **缺失值处理** — 数值字段用中位数填充，分类字段用众数填充
+4. **异常值过滤** — 对年龄、学习时间、睡眠时间等字段设置合理范围
+
+## 探索性分析（EDA）
+
+主程序自动生成 6 张可视化图表：
+
+| 图表 | 内容 |
+|------|------|
+| fig1 | 屏幕时间分布（直方图 + KDE 曲线） |
+| fig2 | 屏幕时间 vs CGPA 散点图 |
+| fig3 | 学习时间 vs CGPA 散点图 |
+| fig4 | 睡眠时间 vs CGPA 散点图 |
+| fig5 | 数值特征相关性热力图 |
+| fig6 | Top 10 特征重要性（随机森林） |
+
+## 建模与评估
+
+### 模型对比
+
+同时训练两种回归模型进行对比：
+
+| 模型 | 说明 |
+|------|------|
+| Linear Regression | 线性回归（基线模型） |
+| Random Forest | 随机森林回归（100 棵决策树） |
+
+### 特征编码
+
+分类变量（`Branch`、`Diet_Type`、`Residence`）使用独热编码（One-Hot Encoding，`drop_first=True`）转为数值。
+
+### 训练/测试划分
+
+80% 训练集 / 20% 测试集，`random_state=42`。
+
+## 运行方式
+
+### 1. 下载数据集（可选）
 
 ```bash
-python -m pip install pandas matplotlib seaborn scikit-learn
+cd project2_2
+python DownloadCSV.py
+```
+
+需要安装 `kagglehub` 并配置 Kaggle API 密钥。数据集也可手动从 [Kaggle](https://www.kaggle.com/datasets/rafi003/student-lifestyle-and-academic-performance-dataset) 下载并放入 `data/` 目录。
+
+### 2. 运行完整分析
+
+```bash
 python main.py
 ```
 
-先将 CSV 放入输入路径。`DownloadCSV.py` 使用 kagglehub 并打印缓存位置，需将对应 CSV 复制到 `data/` 后再分析。
+输出：
+- 控制台打印数据概览、清洗前后样本量、描述性统计、模型评估结果、特征重要性
+- `outputs/` — CSV 结果文件
+- `figures/` — 可视化图表
+
+## 环境要求
+
+```bash
+pip install pandas matplotlib seaborn scikit-learn
+```
+
+- Python 3.8+
+- pandas
+- matplotlib
+- seaborn
+- scikit-learn
+- kagglehub（仅下载数据集时需要）
